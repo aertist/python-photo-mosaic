@@ -2,6 +2,7 @@ import time
 import itertools
 import random
 import sys
+import os
 
 import numpy as np
 from PIL import Image
@@ -209,7 +210,7 @@ def coords_from_middle(x_count, y_count, y_bias=1, shuffle_first=0, ):
     return coords
     
 
-def create_mosaic(source_path, target, tile_ratio=1920/800, tile_width=75, enlargement=8, reuse=True, color_mode='RGB', tile_paths=None, shuffle_first=30):
+def create_mosaic(source_path, target, tile_ratio=1920/800, tile_width=75, enlargement=8, reuse=True, color_mode='RGB', tile_folder=None, shuffle_first=30):
     """Forms an mosiac from an original image using the best
     tiles provided. This reads, processes, and keeps in memory
     a copy of the source image, and all the tiles while processing.
@@ -239,6 +240,13 @@ def create_mosaic(source_path, target, tile_ratio=1920/800, tile_width=75, enlar
 
     # Setup Mosaic
     mosaic = MosaicImage(source_image.image, target, config)
+
+    #retrive the tiles from folder
+    list_of_tiles = os.listdir(tile_folder)    
+    tile_paths=[]
+    for tile in list_of_tiles:
+        string=tile_folder+'/'+tile
+        tile_paths.append(string)
 
     # Assest Tiles, and save if needed, returns directories where the small and large pictures are stored
     print('Assessing Tiles')

@@ -14,9 +14,9 @@ As well as an image to use for the photo-mosaic ([most common image formats are 
 **Usage**
 ```python
 create_mosaic(
-    subject="/path/to/source/image", 
+    source_path="/path/to/source/image", 
     target="/path/to/output/image", 
-    tile_paths=["/path/to/tile_1" , ... "/path/to/tile_n"],
+    tile_folder="/path/to/tile_folder",
     tile_ratio=1920/800, # Crop tiles to be height/width ratio
     tile_width=300, # Tile will be scaled
     enlargement=20, # Mosiac will be this times larger than original
